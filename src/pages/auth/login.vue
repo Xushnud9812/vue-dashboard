@@ -40,7 +40,7 @@ const login = async () => {
         <h1 class="mb-10 font-bold text-2xl text-[#28293D]">Kirish</h1>
         <div class="mb-2">
           <p>
-            username: 'kminchelle',
+            login: 'kminchelle',
           </p>
           <p>
             password: '0lelplR',
