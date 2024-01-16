@@ -1,10 +1,12 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import { useUserStore } from '@/store/user';
+import { useSidebarStore } from '@/store/sidebar';
 
 import { useRouter } from 'vue-router'
-
 const userStore = useUserStore()
+
+const sidebarStore = useSidebarStore()
 
 const router = useRouter()
 
@@ -13,32 +15,34 @@ const logout = () => {
   router.push('/login')
 }
 
+const changeSidebar = () => {
+  sidebarStore.changeSidebar()
+}
+
 
 </script>
 
 <template>
-  <div class="fixed w-full z-40 bg-white  shadow-md">
-    <div class="container">
+  <div :class="sidebarStore.isSidebar ? 'pl-72' : 'pl-0'"
+    class="fixed w-full  duration-300  z-40 bg-[#F6F6F8]  shadow-md">
+    <div class="px-5">
       <div class="flex justify-between items-center">
-        <div class="logo">
-          <router-link to="/" class="text-primary font-bold text-xl">Logo</router-link>
+        <div class=" flex items-center gap-3">
+          <button :class="sidebarStore.isSidebar ? '' : 'rotate-180'" @click="changeSidebar" class="text-primary">
+            <Icon class="text-2xl" icon="ep:fold" />
+          </button>
+          <router-link to="/" class="text-primary font-bold text-xl">Praktikum Academy boshqaruv tizimi</router-link>
         </div>
-        <div class="flex gap-4 py-5">
-          <router-link to="/products" class="font-medium hover:text-primary">Mahsulotlar</router-link>
-          <router-link to="/posts" class="font-medium hover:text-primary">Postlar</router-link>
-          <router-link to="/users" class="font-medium hover:text-primary">Foydalanuvchilar</router-link>
 
-        </div>
         <div class="logo">
           <!-- <router-link to="/login" class="font-medium hover:text-primary">Kirish</router-link> -->
           <div>
             <div class="flex">
               <div class="relative  group ">
-                <button class="py-5 group/button flex items-center gap-2">
-                  <div
-                    class="rounded-full overflow-hidden border border-primary w-10 h-10 flex justify-center items-center ">
+                <button class="py-3 group/button flex items-center gap-2">
+                  <div class="rounded-full bg-[#07A2871A] w-10 h-10 flex justify-center items-center ">
 
-                    <img class="" :src="userStore.user.image" alt="User's avatar">
+                    <Icon class="text-primary text-2xl" icon="ep:user" />
                   </div>
 
                   {{ userStore.user.firstName }}

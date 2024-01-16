@@ -5,16 +5,9 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    fontFamily: {
-      'montserrat': 'Montserrat',
-    },
     extend: {
-      container: {
-        center: true,
-        padding: '20px'
-      },
       colors: {
-        primary: '#F7931F'
+        primary: '#166199'
       }
     },
   },

@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script setup >
 import { toRef } from "vue";
-import usePagination from "@/composables/usePagination";
+import usePagination from "@/composables/usePagination.js";
 
-const props = defineProps(["visiblePages", "totalPages", "currentPage", "totalItems", 'to_page', 'from_page']);
+const props = defineProps(["visiblePages", "totalPages", "currentPage",]);
 
 const { pagination } = usePagination(
   toRef(props, "totalPages"),
@@ -10,9 +10,8 @@ const { pagination } = usePagination(
   toRef(props, "currentPage")
 );
 
-console.log('pagination', pagination)
 
-function getButtonLabel(page: number) {
+function getButtonLabel(page) {
   if (page === props.totalPages) {
     return `Go to page ${page}, the last page`;
   } else {
@@ -22,19 +21,10 @@ function getButtonLabel(page: number) {
 </script>
 
 <template>
-  <div class="flex justify-between items-center">
-    <div class="flex">
-      <p><span>{{ totalItems }}</span> tadan
-        <span>{{ from_page }}-{{ to_page }}</span> ko‘rsatilmoqda
-      </p>
-    </div>
+  <div class="flex justify-end items-center">
+
     <nav class="flex gap-10">
-      <!-- <div class="flex items-center gap-5">
-        <p>Ko‘rsatish</p>
-        <select class="focus:outline-none py-2 px-2.5" name="" id="">
-          <option v-for="item, index in 10" :key="index" value="1">{{ item }}</option>
-        </select>
-      </div> -->
+
       <ul class="flex items-center gap-2">
         <li>
           <button class="border border-[#DFE3E8] p-1 rounded" type="button" @click="$emit('previous-page')"

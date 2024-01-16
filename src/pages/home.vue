@@ -1,6 +1,6 @@
 
 <template>
-  <div class="pt-12 container">
+  <div class="">
     <div class="grid grid-cols-3 gap-7">
       <div class="flex items-center gap-4  bg-white rounded-lg p-6 border-1 border-[#2e5bff14]">
         <span>
