@@ -31,7 +31,7 @@ const changeSidebar = () => {
           <button :class="sidebarStore.isSidebar ? '' : 'rotate-180'" @click="changeSidebar" class="text-primary">
             <Icon class="text-2xl" icon="ep:fold" />
           </button>
-          <router-link to="/" class="text-primary font-bold text-xl">Praktikum Academy boshqaruv tizimi</router-link>
+          <router-link to="/" class="text-primary">Praktikum Academy boshqaruv tizimi</router-link>
         </div>
 
         <div class="logo">

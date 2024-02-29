@@ -11,22 +11,22 @@ const sidebarMenu = ref([
   {
     name: 'Bosh sahifa',
     url: '/',
-    icon: ''
+    icon: 'mingcute:home-3-fill'
   },
   {
     name: 'Foydalanuvchilar',
     url: '/users',
-    icon: ''
+    icon: 'mingcute:user-follow-line'
   },
   {
     name: 'Guruhlar',
     url: '/groups',
-    icon: ''
+    icon: 'mingcute:vector-group-fill'
   },
   {
     name: 'Topshiriqlar',
     url: '/tasks',
-    icon: ''
+    icon: 'mingcute:task-2-line'
   },
 ])
 
@@ -35,7 +35,7 @@ const sidebarMenu = ref([
 <template>
   <div>
     <div :class="sidebarStore.isSidebar ? 'left-0' : '-left-full '"
-      class="fixed duration-300 p-5 top-0  w-72 h-screen z-50 bg-blue-500">
+      class="fixed duration-300 p-5 top-0  w-72 h-screen z-50 bg-blue-600">
       <div>
         <img class="mx-auto" src="/logo.png" alt="">
       </div>
@@ -43,10 +43,10 @@ const sidebarMenu = ref([
 
       <div class="flex flex-col mt-10 gap-2">
         <router-link
-          class="[&.router-link-exact-active]:bg-[#114E7B] flex items-center gap-2 text-white p-3 rounded-md hover:bg-[#114E7B]"
+          class="[&.router-link-exact-active]:bg-[#1d4ed8] flex items-center gap-2 text-white p-3 rounded-md hover:bg-[#1d4ed8]"
           v-for="item, index in sidebarMenu" :key="index" :to="item.url">
-          <Icon icon="mingcute:home-3-line" />
-          {{ item.name }}
+          <Icon :icon="`${item.icon}`" width="28" height="28"/>
+          <p class="text-bold">{{ item.name }}</p>
         </router-link>
       </div>
     </div>
