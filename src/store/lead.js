@@ -39,7 +39,7 @@ export const useKanbanStore = defineStore("kanban", {
         ],
       },
       {
-        title: "In progress",
+        title: "Saralangan",
         color: '#008E76',
 
         tasks: [
@@ -54,7 +54,7 @@ export const useKanbanStore = defineStore("kanban", {
         ],
       },
       {
-        title: "Review",
+        title: "Kursga yozilgan",
         color: '#FFAA00',
 
         tasks: [
@@ -68,7 +68,7 @@ export const useKanbanStore = defineStore("kanban", {
         ],
       },
       {
-        title: "Done",
+        title: "To'lov qilgan",
         color: '#00AEED',
         tasks: [
           {
@@ -84,7 +84,6 @@ export const useKanbanStore = defineStore("kanban", {
   }),
   actions: {
     addTaskToColumn(columnTitle, task) {
-      console.log("qani", columnTitle, task);
       const column = this.columns.find((col) => col.title === columnTitle);
       if (column) {
         column.tasks.push(task);
