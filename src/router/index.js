@@ -25,6 +25,7 @@ const router = createRouter({
           name: 'users',
           component: () => import('@/pages/users.vue')
         },
+        
         {
           path: '/leads',
           name: 'leads',
@@ -40,8 +41,25 @@ const router = createRouter({
           name: 'tasks',
           component: () => import('@/pages/tasks.vue')
         },
+        {
+          path: '/manager',
+          name: 'manager',
+          component: () => import('@/pages/manager/home.vue')
+        },
       ],
     },
+    // {
+    //   path: '/manager',
+    //   component: () => import('@/layouts/default.vue'),
+    //   meta: { requiresAuth: true },
+    //   children:[
+    //     {
+    //       path: '/',
+    //       name: 'manager',
+    //       component: () => import('@/pages/manager/home.vue')
+    //     },
+    //   ]
+    // },
     {
       path: '/login',
       name: 'login',

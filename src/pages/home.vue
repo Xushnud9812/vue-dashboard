@@ -62,7 +62,7 @@
         <div><Chart /></div>
       </div>
       <div class="bg-white grow rounded-lg p-6  ml-2 border-1 border-[#2e5bff14]">
-        <h3 class="font-semibold text-sky-700">Lid olib kelgan reklamalar</h3>
+        <h3 class="font-semibold text-sky-700">Ichki topshiriqlar ro'yhati</h3>
         <div>2</div>
       </div>
     </div>
