@@ -45,7 +45,7 @@ const sidebarMenu = ref([
         <router-link
           class="[&.router-link-exact-active]:bg-[#114E7B] flex items-center gap-2 text-white p-3 rounded-md hover:bg-[#114E7B]"
           v-for="item, index in sidebarMenu" :key="index" :to="item.url">
-          <Icon :icon="`${item.icon}`" width="28" height="28"/>
+          <Icon :icon="`${item.icon}`" width="26" height="26"/>
           <p class="text-bold">{{ item.name }}</p>
         </router-link>
       </div>
