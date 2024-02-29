@@ -62,10 +62,10 @@ const goToPage = (page) => {
                   class="focus:outline-none w-72 pr-12 border px-4 py-2 rounded" type="text">
                 <Icon class="text-[#666] text-2xl absolute top-1/2 right-5 -translate-y-1/2" icon="gg:search" />
               </div>
-              <button class="bg-[#29A0E31A] py-2.5 px-8 rounded flex  items-center text-[#29A0E3]">
+              <button class="bg-[#29A0E31A]  py-2.5 px-8 rounded flex  items-center text-[#29A0E3] hover:bg-[#114E7B] hover:text-white">
                 Filter
               </button>
-              <button class="bg-[#29A0E31A] rounded py-2.5 px-5 flex gap-1 items-center text-[#29A0E3]">
+              <button class="bg-[#166199] rounded py-2.5 px-5 flex gap-1 items-center text-white">
                 <Icon class="text-lg" icon="ep:plus" />
                 Qo'shish
               </button>

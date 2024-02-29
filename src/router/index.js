@@ -26,6 +26,11 @@ const router = createRouter({
           component: () => import('@/pages/users.vue')
         },
         {
+          path: '/leads',
+          name: 'leads',
+          component: () => import('@/pages/call-center/leads.vue')
+        },
+        {
           path: '/groups',
           name: 'groups',
           component: () => import('@/pages/groups.vue')

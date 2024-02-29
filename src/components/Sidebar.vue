@@ -14,19 +14,19 @@ const sidebarMenu = ref([
     icon: 'mingcute:home-3-fill'
   },
   {
-    name: 'Foydalanuvchilar',
-    url: '/users',
-    icon: 'mingcute:user-follow-line'
-  },
-  {
-    name: 'Guruhlar',
-    url: '/groups',
-    icon: 'mingcute:vector-group-fill'
+    name: 'Lidlar',
+    url: '/leads',
+    icon: 'mdi:leads-outline'
   },
   {
     name: 'Topshiriqlar',
     url: '/tasks',
     icon: 'mingcute:task-2-line'
+  },
+  {
+    name: 'Guruhlar',
+    url: '/groups',
+    icon: 'mingcute:vector-group-fill'
   },
 ])
 
@@ -45,7 +45,7 @@ const sidebarMenu = ref([
         <router-link
           class="[&.router-link-exact-active]:bg-[#114E7B] flex items-center gap-2 text-white p-3 rounded-md hover:bg-[#114E7B]"
           v-for="item, index in sidebarMenu" :key="index" :to="item.url">
-          <Icon :icon="`${item.icon}`" width="26" height="26"/>
+          <Icon :icon="`${item.icon}`" width="26" height="26" />
           <p class="text-bold">{{ item.name }}</p>
         </router-link>
       </div>
