@@ -56,8 +56,15 @@
 
 
     </div>
-    <div class="mb-20 mt-5 col-span-3 h-96  bg-white rounded-lg p-6 border-1 border-[#2e5bff14]">
-      <chart />
+    <div class="mb-20 mt-5 flex">
+      <div class="bg-white grow rounded-lg  p-6 mr-2 border-1 border-[#2e5bff14]">
+        <h3 class="font-semibold text-sky-700">Sotuv voronkasi</h3>
+        <div><Chart /></div>
+      </div>
+      <div class="bg-white grow rounded-lg p-6  ml-2 border-1 border-[#2e5bff14]">
+        <h3 class="font-semibold text-sky-700">Lid olib kelgan reklamalar</h3>
+        <div>2</div>
+      </div>
     </div>
   </div>
 </template>
