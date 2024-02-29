@@ -23,7 +23,7 @@ const deleteTask = (taskId: string) => {
     <draggable class="dragArea list-group" :list="props.column.tasks" :animation="200" ghost-class="ghost-card"
       :group="{ name: 'kanban' }" item-key="id">
       <template #item="{ element }">
-        <div :class="`border-[${props.column.color}]`"
+        <div :style="`border-color: ${props.column.color}`"
           class="bg-white border-l-8  shadow group rounded px-3 pt-3 pb-5 mb-5  cursor-move">
           <div class="flex justify-between items-start">
             <h2 class="basis-4/5">
