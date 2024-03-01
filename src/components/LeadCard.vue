@@ -1,18 +1,18 @@
-<script setup lang="ts">
-import { computed } from 'vue'
+<script setup >
 import draggable from "vuedraggable";
-// import { useKanbanStore } from "@/store/lead";
 import { Icon } from '@iconify/vue';
+import { useKanbanStore } from "@/store/lead";
 
-import { useKanbanStore } from "../store/lead";
+const kanban = useKanbanStore();
+
 const props = defineProps({
   column: {
     type: Object,
     default: () => ({}),
   },
 });
-const deleteTask = (taskId: string) => {
-  const kanban = useKanbanStore();
+
+const deleteTask = (taskId) => {
   kanban.deleteTask(taskId);
 };
 

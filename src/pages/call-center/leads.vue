@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<script setup >
 import { ref } from "vue";
-import TaskItem from "@/components/TaskItem.vue";
+import LeadCard from "@/components/LeadCard.vue";
 import { useKanbanStore } from "@/store/lead";
 
 const kanbanStore = useKanbanStore();
@@ -8,7 +8,7 @@ const kanbanStore = useKanbanStore();
 const isCreateModal = ref(false);
 const columnTitle = ref("");
 
-const createTask = (title: string) => {
+const createTask = (title) => {
   columnTitle.value = title;
   isCreateModal.value = true;
 };
@@ -26,7 +26,7 @@ const createTask = (title: string) => {
         </button>
       </div>
       <div class="p-5 bg-slate-300">
-        <TaskItem :column="column" />
+        <LeadCard :column="column" />
       </div>
     </div>
   </div>

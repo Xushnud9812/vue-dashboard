@@ -25,7 +25,7 @@ const router = createRouter({
           name: 'users',
           component: () => import('@/pages/users.vue')
         },
-        
+
         {
           path: '/leads',
           name: 'leads',
@@ -39,7 +39,12 @@ const router = createRouter({
         {
           path: '/tasks',
           name: 'tasks',
-          component: () => import('@/pages/tasks.vue')
+          component: () => import('@/pages/call-center/tasks.vue')
+        },
+        {
+          path: '/send-messages',
+          name: 'sendMessages',
+          component: () => import('@/pages/call-center/send-messages.vue')
         },
         {
           path: '/manager',

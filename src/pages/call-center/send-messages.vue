@@ -51,7 +51,7 @@ const goToPage = (page) => {
       <div>
         <div class="overflow-x-auto bg-white sm:rounded-lg">
           <div class="p-6 flex items-center justify-between mb-10">
-            <h1 class="text-xl text-[#29A0E3] font-medium">Foydalanuvchilar</h1>
+            <h1 class="text-xl text-[#29A0E3] font-medium">Xabarlar ro’yhati</h1>
             <div class="flex items-center gap-2">
               <button class="flex  items-center text-[#29A0E3]">
                 Eksport excel
@@ -76,13 +76,8 @@ const goToPage = (page) => {
             <thead class="text-xs text-gray-700   ">
               <tr>
                 <th class="px-6 py-3  ">#</th>
-                <th class="px-6 py-3 ">
-                  Full Name
-                </th>
                 <th class="px-6 py-3 ">Phone</th>
                 <th class="px-6 py-3 ">Email</th>
-                <th class="px-6 py-3 ">Ip</th>
-                <th class="px-6 py-3 ">Username</th>
                 <th class="px-6 py-3 ">Birth Date</th>
                 <th class="px-6 py-3 text-right">Action</th>
               </tr>
@@ -93,18 +88,9 @@ const goToPage = (page) => {
                   {{ (currentPage - 1) * 10 + index + 1 }}
                 </th>
                 <td class="px-6 py-4">
-                  {{ item.firstName }}
-                  {{ item.lastName }}
-                </td>
-                <td class="px-6 py-4">
                   {{ item.phone }}
                 </td>
-                <td class="px-6 py-4">
-                  {{ item.email }}
-                </td>
-                <td class="px-6 py-4">
-                  {{ item.ip }}
-                </td>
+
                 <td class="px-6 py-4">
                   {{ item.username }}
                 </td>

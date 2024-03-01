@@ -24,6 +24,11 @@ const sidebarMenu = ref([
     icon: 'mingcute:task-2-line'
   },
   {
+    name: 'Jo\'natilgan xabarlar',
+    url: '/send-messages',
+    icon: 'tabler:send'
+  },
+  {
     name: 'Guruhlar',
     url: '/groups',
     icon: 'mingcute:vector-group-fill'

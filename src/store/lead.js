@@ -91,7 +91,7 @@ export const useKanbanStore = defineStore("kanban", {
         console.error(`Column "${columnTitle}" not found.`);
       }
     },
-    deleteTask(taskId) {
+    DeleteTask(taskId) {
       for (const column of this.columns) {
         const index = column.tasks.findIndex((task) => task.id === taskId);
         if (index !== -1) {
