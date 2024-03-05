@@ -1,9 +1,13 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue';
 import { useSidebarStore } from '@/store/sidebar';
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 
+console.log(route);
 const sidebarStore = useSidebarStore()
 
 
@@ -34,6 +38,64 @@ const sidebarMenu = ref([
     icon: 'mingcute:vector-group-fill'
   },
 ])
+
+// const sidebarMenus = ref([
+//   {
+//     title: 'call-center',
+//     items: [
+//       {
+//         name: 'Bosh sahifa',
+//         url: '/',
+//         icon: 'mingcute:home-3-fill'
+//       },
+//       {
+//         name: 'Lidlar',
+//         url: '/leads',
+//         icon: 'mdi:leads-outline'
+//       },
+//       {
+//         name: 'Topshiriqlar',
+//         url: '/tasks',
+//         icon: 'mingcute:task-2-line'
+//       },
+//       {
+//         name: 'Jo\'natilgan xabarlar',
+//         url: '/send-messages',
+//         icon: 'tabler:send'
+//       },
+//       {
+//         name: 'Guruhlar',
+//         url: '/groups',
+//         icon: 'mingcute:vector-group-fill'
+//       },
+//     ]
+//   },
+//   {
+//     title: 'manager',
+//     items: [
+//       {
+//         name: 'Bosh sahifa',
+//         url: '/',
+//         icon: 'mingcute:home-3-fill'
+//       },
+//       {
+//         name: 'Guruhlar',
+//         url: '/groups',
+//         icon: 'mingcute:vector-group-fill'
+//       },
+//     ]
+//   }
+// ])
+// const sidebarMenu = ref([])
+
+// const setSidebarMenu = (name) => {
+//   let menu = sidebarMenus.value.filter((item) => item.title == name)
+//   sidebarMenu.value = menu[0].items
+// }
+
+// setSidebarMenu(route.name)
+
+
 
 </script>
 

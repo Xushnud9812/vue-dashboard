@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@canvasjs/vue-charts": "^1.0.4",
+    "@casl/ability": "^6.7.0",
+    "@casl/vue": "^2.2.2",
     "axios": "^1.6.5",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",

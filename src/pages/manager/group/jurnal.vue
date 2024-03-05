@@ -4,7 +4,15 @@
 
 <template>
   <div>
-    <h1>Guruhlar</h1>
+
+    <div class="container">
+
+      <h1>Jurnal</h1>
+
+
+    </div>
   </div>
 </template>
+
+
 
