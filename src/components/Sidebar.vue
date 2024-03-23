@@ -42,6 +42,11 @@ const sidebarMenu = ref([
     url: '/students',
     icon: 'ph:student'
   },
+  {
+    name: 'Darslar ro‘yhati',
+    url: '/lesson',
+    icon: 'material-symbols:play-lesson-outline'
+  },
 ])
 
 // const sidebarMenus = ref([
