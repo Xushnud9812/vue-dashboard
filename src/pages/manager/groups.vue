@@ -5,7 +5,7 @@ import Pagination from '@/components/Pagination.vue';
 import { api } from '@/api'
 import { useRouter } from 'vue-router'
 import { useDebouncedRef } from '@/composables/debouncedRef.js'
-
+import dateformat from "dateformat";
 const users = ref([])
 
 const search = useDebouncedRef('', 1000)
@@ -13,14 +13,17 @@ const totalUsers = ref()
 const currentPage = ref(1)
 const totalPages = ref(1)
 
+function dateFormat(date) {
+  let date1 = dateformat(date, "dd.mm.yyyy");
+  return date1;
+}
 const fetchData = async () => {
   try {
-    const response = await api.get(`users/${search.value ? `search?q=${search.value}&` : '?'}limit=10&skip=${currentPage.value * 10 - 10} `);
-    users.value = response.data.users
+    const response = await api.get(`group/get-all${search.value ? `search?q=${search.value}&` : '?'}limit=15&skip=${currentPage.value * 10 - 10} `);
+    users.value = response.data.data
     totalUsers.value = response.data.total
     totalPages.value = Math.ceil(response.data.total / response.data.limit)
     currentPage.value
-
   } catch (error) {
     console.error('Error occurred:', error);
   }
@@ -58,7 +61,7 @@ const goToPage = (page) => {
                 <Icon class="text-3xl" icon="material-symbols:download" />
               </button>
               <div class="relative">
-                <input v-model="search" placeholder="Search..."
+                <input v-model="search" placeholder="Guruh kodi bo'yicha izlash"
                   class="focus:outline-none w-72 pr-12 border px-4 py-2 rounded" type="text">
                 <Icon class="text-[#666] text-2xl absolute top-1/2 right-5 -translate-y-1/2" icon="gg:search" />
               </div>
@@ -72,10 +75,9 @@ const goToPage = (page) => {
               </button>
             </div>
           </div>
-          <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
-            <thead class="text-base text-gray-700   ">
+          <table class="w-full text-left rtl:text-right text-gray-500 ">
+            <thead class="text-base text-gray-700  text-center ">
               <tr>
-                <th class="px-6 py-3  ">#</th>
                 <th class="px-6 py-3 ">
                   Guruh kodi
                 </th>
@@ -85,39 +87,35 @@ const goToPage = (page) => {
                 <th class="px-6 py-3 ">O’quvchilar soni</th>
                 <th class="px-6 py-3 ">Dars boshlangan sana</th>
                 <th class="px-6 py-3 ">Status</th>
-                <th class="px-6 py-3 text-right">Amal</th>
               </tr>
             </thead>
-            <tbody class="text-lg" v-if="users.length > 0">
+            <tbody class="text-gray-900 text-center font-medium" v-if="users.length > 0" >
               <tr v-for="item, index in users" :key="index" class=" border-b  hover:bg-gray-50 ">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                  {{ (currentPage - 1) * 10 + index + 1 }}
-                </th>
                 <td class="px-6 py-4">
                   <router-link class="text-[#29A0E3]" :to="{ name: 'main-group', params: { id: item.id } }">
-                    #P-10/2023
+                    {{ item.code }}
                   </router-link>
                 </td>
                 <td class="px-6 py-4">
-                  {{ item.phone }}
+                  {{ item.direction_name }}
                 </td>
                 <td class="px-6 py-4">
-                  {{ item.email }}
+                  {{ item.day }}
                 </td>
                 <td class="px-6 py-4">
-                  {{ item.ip }}
+                  {{ item.time }}
                 </td>
                 <td class="px-6 py-4">
-                  {{ item.username }}
+                  -
                 </td>
                 <td class="px-6 py-4">
-                  {{ item.birthDate }}
+                  {{ dateFormat(item.start_date) }}
                 </td>
                 <td class="px-6 py-4">
-                  {{ item.birthDate }}
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+                  <span v-if="item.status == 0" class="text-gray-700 font-medium">Yangi guruh</span>
+                  <span v-if="item.status == 1" class="text-green-700 font-medium">O'quv jarayonida</span>
+                  <span v-if="item.status == 2" class="text-sky-500 font-medium">Tugallagan</span>
+                  <span v-if="item.status == 3" class="text-red-600 font-medium">O'chirilgan</span>
                 </td>
               </tr>
 

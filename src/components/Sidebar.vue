@@ -37,6 +37,11 @@ const sidebarMenu = ref([
     url: '/groups',
     icon: 'mingcute:vector-group-fill'
   },
+  {
+    name: 'O\'quvchilar',
+    url: '/students',
+    icon: 'ph:student'
+  },
 ])
 
 // const sidebarMenus = ref([

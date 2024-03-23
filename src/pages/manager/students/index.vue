@@ -17,9 +17,13 @@ function dateFormat(date) {
   let date1 = dateformat(date, "dd.mm.yyyy | HH:MM");
   return date1;
 }
+function dateFormat2(date) {
+  let date1 = dateformat(date, "dd.mm.yyyy");
+  return date1;
+}
 const fetchData = async () => {
   try {
-    const response = await api.get(`message/get-all/${search.value ? `?search=${search.value}&` : '?'}limit=15&skip=${currentPage.value * 10 - 10} `);
+    const response = await api.get(`student/get-all/${search.value ? `?search=${search.value}&` : '?'}limit=15&skip=${currentPage.value * 10 - 10} `);
     users.value = response.data.data
     console.log(response.data.total)
     totalUsers.value = response.data.total
@@ -53,7 +57,7 @@ const goToPage = (page) => {
       <div>
         <div class="overflow-x-auto bg-white sm:rounded-lg">
           <div class="p-6 flex items-center justify-between mb-10">
-            <h1 class="text-xl text-[#29A0E3] font-medium">Xabarlar ro’yhati</h1>
+            <h1 class="text-xl text-[#29A0E3] font-medium">O'quvchilar ro’yhati</h1>
             <div class="flex items-center gap-2">
 
               <download-excel :data="users" type="xlsx" name="filename.xlsx" class="flex  items-center text-[#29A0E3]">
@@ -61,7 +65,7 @@ const goToPage = (page) => {
                 <Icon class="text-3xl" icon="material-symbols:download" />
               </download-excel>
               <div class="relative">
-                <input v-model="search" placeholder="Search..."
+                <input v-model="search" placeholder="ID bo'yicha qidiruv"
                   class="focus:outline-none w-72 pr-12 border px-4 py-2 rounded" type="text">
                 <Icon class="text-[#666] text-2xl absolute top-1/2 right-5 -translate-y-1/2" icon="gg:search" />
               </div>
@@ -76,40 +80,39 @@ const goToPage = (page) => {
             </div>
           </div>
           <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
-            <thead class="text-base text-gray-700   ">
+            <thead class="text-base text-gray-700  text-center">
               <tr>
-                <th class="px-6 py-3  ">#</th>
-                <th class="px-6 py-3 ">Telefon raqam</th>
-                <th class="px-6 py-3 ">Habar matni</th>
-                <th class="px-6 py-3 ">Toyifa</th>
-                <th class="px-6 py-3">Holat</th>
-                <th class="px-6 py-3">Vaqti</th>
+                <th class="px-6 py-3  ">ID</th>
+                <th class="px-6 py-3 ">F.I.O</th>
+                <th class="px-6 py-3 ">Telefon raqami</th>
+                <th class="px-6 py-3 ">Tug'ilgan sanasi</th>
+                <th class="px-6 py-3">Jinsi</th>
+                <th class="px-6 py-3">Ro'yhatga olingan vaqti</th>
               </tr>
             </thead>
-            <tbody v-if="users.length > 0">
+            <tbody v-if="users.length > 0" class="text-center">
               <tr v-for="item, index in users" :key="index"
                 class=" border-b text-gray-900 font-medium hover:bg-gray-50 ">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                  {{ (currentPage - 1) * 10 + index + 1 }}
+                  {{ item.code }}
                 </th>
                 <td class="px-6 py-4">
-                  {{ item.phone }}
+                  {{ item.full_name }}
                 </td>
 
                 <td class="px-6 py-4">
-                  {{ item.text }}
+                  {{ item.phone }}
                 </td>
                 <td class="px-6 py-4">
-                  <span v-if="item.type == 1" class="text-sky-700 font-medium">Reklama</span>
-                  <span v-if="item.type == 2" class="text-red-500 font-medium">Qarzdorlik</span>
-                  <span v-if="item.type == 3" class="text-yellow-600 font-medium">To'lov</span>
+                    {{ dateFormat2(item.brightday) }}
                 </td>
                 <td class="px-6 py-4">
-                  <span class="text-emerald-700 font-medium" v-if="item.status == 1">Jo‘natilgan</span>
+                  <span class="text-emerald-700 font-medium" v-if="item.gender == 1">Erkak</span>
+                  <span class="text-red-500 font-medium" v-if="item.gender == 2">Ayol</span>
                 </td>
                 <td class="px-6 py-4">
                   {{ dateFormat(item.created) }}
-                </td>
+                </td>           
               </tr>
 
             </tbody>

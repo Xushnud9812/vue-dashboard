@@ -9,7 +9,7 @@ const userStore = useUserStore()
 const router = useRouter()
 
 const formData = ref({
-  username: "",
+  phone: "+998911347773",
   password: "",
 });
 
@@ -18,10 +18,10 @@ const errorMessage = ref('');
 
 const login = async () => {
   try {
-    const response = await api.post('/auth/login', formData.value);
+    const response = await api.post('/user/login', formData.value);
     if (response.status === 200) {
       userStore.setUser(response.data)
-      console.log(response.data)
+      userStore.setToken(response.data.tokens)
       router.push('/')
     } else {
       errorMessage.value = 'Invalid credentials. Please try again.';
@@ -38,20 +38,13 @@ const login = async () => {
 
       <div class="bg-white rounded-lg p-8">
         <h1 class="mb-10 font-bold text-2xl text-[#28293D]">Kirish</h1>
-        <div class="mb-2">
-          <p>
-            login: 'kminchelle',
-          </p>
-          <p>
-            password: '0lelplR',
-          </p>
-        </div>
+       
         <form @submit.prevent="login" class="flex flex-col gap-6">
           <div>
             <h2 class="text-xs font-medium uppercase mb-2">Login </h2>
             <input
               class="px-4 py-3 w-full rounded border border-[#E0E7FF] bg-[#E0E7FF33] focus:border-primary focus:outline-none"
-              placeholder="FISH" v-model="formData.username" type="text" />
+              placeholder="FISH" v-model="formData.phone" type="text" />
           </div>
           <div>
             <h2 class="text-xs font-medium uppercase mb-2">PAROL </h2>

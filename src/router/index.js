@@ -25,7 +25,11 @@ const router = createRouter({
           name: 'users',
           component: () => import('@/pages/users.vue')
         },
-
+        {
+          path: '/students',
+          name: 'students',
+          component: () => import('@/pages/manager/students/index.vue')
+        },
         {
           path: '/leads',
           name: 'leads',
@@ -84,6 +88,7 @@ const router = createRouter({
           component: () => import('@/pages/manager/home.vue')
         },
       ],
+
     },
     // {
     //   path: '/manager',
