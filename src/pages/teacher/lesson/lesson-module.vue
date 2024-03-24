@@ -23,9 +23,8 @@ function dateFormat2(date) {
 }
 const fetchData = async () => {
   try {
-    const response = await api.get(`lesson/get-all/${search.value ? `?search=${search.value}&` : '?'}limit=15&skip=${currentPage.value * 10 - 10} `);
+    const response = await api.get(`lesson/module/get-all?course=${this.$route.params.id}&limit=15&skip=${currentPage.value * 10 - 10} `);
     users.value = response.data.data
-    console.log(response.data.total)
     totalUsers.value = response.data.total
     totalPages.value = Math.ceil(response.data.total / response.data.limit)
     currentPage.value
@@ -106,7 +105,7 @@ const goToPage = (page) => {
                 </td>
 
                 <td class="px-6 py-4">
-                  {{ item.module_count }}
+                  -
                 </td>
                 <td class="px-6 py-4">
                     <span class="text-emerald-700 font-medium" v-if="item.type == 1">Asosiy</span>
