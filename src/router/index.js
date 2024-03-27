@@ -49,6 +49,13 @@ const router = createRouter({
           path: '/groups',
           name: 'groups',
           component: () => import('@/pages/manager/groups.vue'),
+          children: [
+            {
+              path: '/create-group',
+              name: 'createGroups',
+              component: () => import('@/pages/manager/group/create-group.vue'),
+            }
+          ]
 
         },
         {

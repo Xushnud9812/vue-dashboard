@@ -69,10 +69,10 @@ const goToPage = (page) => {
                 class="bg-[#29A0E31A]  py-2.5 px-8 rounded flex  items-center text-[#29A0E3] hover:bg-[#114E7B] hover:text-white">
                 Filter
               </button>
-              <button class="bg-[#166199] rounded py-2.5 px-5 flex gap-1 items-center text-white">
+              <router-link to="/create-group" class="bg-[#166199] rounded py-2.5 px-5 flex gap-1 items-center text-white">
                 <Icon class="text-lg" icon="ep:plus" />
                 Qo'shish
-              </button>
+              </router-link>
             </div>
           </div>
           <table class="w-full text-left rtl:text-right text-gray-500 ">
@@ -89,7 +89,7 @@ const goToPage = (page) => {
                 <th class="px-6 py-3 ">Status</th>
               </tr>
             </thead>
-            <tbody class="text-gray-900 text-center font-medium" v-if="users.length > 0" >
+            <tbody class="text-gray-900 text-center font-medium" v-if="users.length > 0">
               <tr v-for="item, index in users" :key="index" class=" border-b  hover:bg-gray-50 ">
                 <td class="px-6 py-4">
                   <router-link class="text-[#29A0E3]" :to="{ name: 'main-group', params: { id: item.id } }">
@@ -131,7 +131,7 @@ const goToPage = (page) => {
             @change="goToPage" @next-page="currentPage++" @previous-page="currentPage--" />
         </div>
       </div>
-
+      <router-view />
     </div>
   </div>
 </template>
