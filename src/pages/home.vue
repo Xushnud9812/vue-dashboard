@@ -63,7 +63,34 @@
       </div>
       <div class="bg-white grow rounded-lg p-6  ml-2 border-1 border-[#2e5bff14]">
         <h3 class="font-semibold text-sky-700">Ichki topshiriqlar ro'yhati</h3>
-        <div>2</div>
+        <div>
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead class="text-base text-gray-700  text-center">
+              <tr>
+                <th class="px-6 py-3">Topshiriq nomi</th>
+                <th class="px-6 py-3">Bajarish muddati</th>
+                <th class="px-6 py-3">Holat</th>              
+              </tr>
+            </thead>
+        
+            <tbody class="text-center">
+              <tr 
+                class=" border-b text-gray-900 font-medium hover:bg-gray-50 ">
+                <td scope="row" class="px-6 py-4">
+                   Topshiriq mazmuni
+                </td>
+                <td class="px-6 py-4">
+                 01.03.2024
+                </td>
+                <td class="px-6 py-4">
+                  <span class="text-red-500 font-medium">Bajarilmagan</span>
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
