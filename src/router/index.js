@@ -28,7 +28,14 @@ const router = createRouter({
         {
           path: '/students',
           name: 'students',
-          component: () => import('@/pages/manager/students/index.vue')
+          component: () => import('@/pages/manager/students/index.vue'),
+          children: [
+            {
+              path: '/create-pupil',
+              name: 'createPupils',
+              component: () => import('@/pages/manager/group/create-pupil.vue'),
+            }
+          ]
         },
         {
           path: '/lesson',
@@ -67,7 +74,8 @@ const router = createRouter({
             {
               path: 'pupils',
               name: 'pupils',
-              component: () => import('@/pages/manager/group/pupils.vue')
+              component: () => import('@/pages/manager/group/pupils.vue'),
+
             },
             {
               path: 'payments',

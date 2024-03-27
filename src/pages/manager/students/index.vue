@@ -45,6 +45,9 @@ watch(search, () => {
   fetchData()
 })
 
+const createPupil = () => {
+  router.push('/create-pupil')
+}
 
 const goToPage = (page) => {
   currentPage.value = page;
@@ -73,7 +76,7 @@ const goToPage = (page) => {
                 class="bg-[#29A0E31A]  py-2.5 px-8 rounded flex  items-center text-[#29A0E3] hover:bg-[#114E7B] hover:text-white">
                 Filter
               </button>
-              <button class="bg-[#166199] rounded py-2.5 px-5 flex gap-1 items-center text-white">
+              <button @click="createPupil" class="bg-[#166199] rounded py-2.5 px-5 flex gap-1 items-center text-white">
                 <Icon class="text-lg" icon="ep:plus" />
                 Qo'shish
               </button>
@@ -91,8 +94,7 @@ const goToPage = (page) => {
               </tr>
             </thead>
             <tbody v-if="users.length > 0" class="text-center">
-              <tr v-for="item, index in users" :key="index"
-                class=" border-b text-gray-900 font-medium hover:bg-gray-50 ">
+              <tr v-for="item, index in users" :key="index" class=" border-b text-gray-900 font-medium hover:bg-gray-50 ">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                   {{ item.code }}
                 </th>
@@ -104,7 +106,7 @@ const goToPage = (page) => {
                   {{ item.phone }}
                 </td>
                 <td class="px-6 py-4">
-                    {{ dateFormat2(item.brightday) }}
+                  {{ dateFormat2(item.brightday) }}
                 </td>
                 <td class="px-6 py-4">
                   <span class="text-emerald-700 font-medium" v-if="item.gender == 1">Erkak</span>
@@ -112,7 +114,7 @@ const goToPage = (page) => {
                 </td>
                 <td class="px-6 py-4">
                   {{ dateFormat(item.created) }}
-                </td>           
+                </td>
               </tr>
 
             </tbody>
@@ -128,6 +130,7 @@ const goToPage = (page) => {
             :from_page="from_page" />
         </div>
       </div>
+      <router-view />
 
     </div>
   </div>
