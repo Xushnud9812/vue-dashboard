@@ -27,7 +27,8 @@ const formData = ref({
 const createGroup = async () => {
   try {
     await api.post('/group/create', formData._value)
-    window.location.reload();
+    // window.location.reload();
+    router.push('/students')
   } catch (e) {
 
   }
