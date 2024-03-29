@@ -1,11 +1,34 @@
 <script setup>
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import AddGroupPupil from '@/components/addGroupPupil.vue';
+import pupils from '@/components/group/pupils.vue';
+import jurnal from '@/components/group/jurnal.vue';
+import payments from '@/components/group/payments.vue';
+import about from '@/components/group/about.vue';
+
 
 const route = useRoute()
+
+const isAddModal = ref(false)
+
+const tabIndex = ref(1)
+
+
+const changeTab = (index) => {
+  tabIndex.value = index
+}
+
+
 </script>
 
 <template>
   <div>
+
+    <AddGroupPupil v-if="isAddModal" @close="isAddModal = false" />
+
+
+
     <div class="">
       <div class="pt-5 flex items-center justify-between mb-10">
         <h1 class="text-xl text-[#29A0E3] font-medium">#P-10/2023 guruh</h1>
@@ -19,7 +42,7 @@ const route = useRoute()
               type="text">
             <Icon class="text-[#666] text-2xl absolute top-1/2 right-5 -translate-y-1/2" icon="gg:search" />
           </div>
-          <button
+          <button @click="isAddModal = true"
             class="bg-[#29A0E31A]  py-2.5 px-8 rounded flex gap-1  items-center text-[#29A0E3] hover:bg-[#114E7B] hover:text-white">
             <Icon class="text-lg" icon="ep:plus" />
             O’quvchi qo’shish
@@ -31,33 +54,34 @@ const route = useRoute()
       </div>
     </div>
     <div class="grid grid-cols-4 mb-10 bg-gray-300 rounded-md overflow-hidden">
-      <router-link exact-active-class="active"
-        class="flex font-semibold [&.active]:bg-white [&.active]:text-primary  justify-center gap-5 p-5"
-        :to="{ name: 'pupils' }">
+      <button @click="changeTab(1)" :class="tabIndex == 1 ? 'bg-white text-primary' : ''"
+        class="flex font-semibold   justify-center gap-5 p-5">
         <Icon class="text-2xl" icon="mdi:users-group" />
         O'quvchilar ro'yhati
-      </router-link>
-      <router-link exact-active-class="active"
-        class="flex font-semibold [&.active]:bg-white [&.active]:text-primary  justify-center gap-5 p-5"
-        :to="{ name: 'jurnal' }">
+      </button>
+      <button @click="changeTab(2)" :class="tabIndex == 2 ? 'bg-white text-primary' : ''"
+        class="flex font-semibold   justify-center gap-5 p-5">
         <Icon class="text-2xl" icon="memory:journal" />
         Jurnal
-      </router-link>
-      <router-link exact-active-class="active"
-        class="flex font-semibold [&.active]:bg-white [&.active]:text-primary  justify-center gap-5 p-5"
-        :to="{ name: 'payments' }">
+      </button>
+      <button @click="changeTab(3)" :class="tabIndex == 3 ? 'bg-white text-primary' : ''"
+        class="flex font-semibold   justify-center gap-5 p-5">
         <Icon class="text-2xl" icon="iconoir:hand-cash" />
         To'lovlar grafigi
-      </router-link>
-      <router-link exact-active-class="active"
-        class="flex font-semibold [&.active]:bg-white [&.active]:text-primary  justify-center gap-5 p-5"
-        :to="{ name: 'about-group' }">
+      </button>
+      <button @click="changeTab(4)" :class="tabIndex == 4 ? 'bg-white text-primary' : ''"
+        class="flex font-semibold   justify-center gap-5 p-5">
         <Icon class="text-2xl" icon="ic:round-list" />
         Umumiy malumot
-      </router-link>
+      </button>
 
     </div>
-    <router-view />
+    <div>
+      <pupils v-if="tabIndex == 1" />
+      <jurnal v-if="tabIndex == 2" />
+      <payments v-if="tabIndex == 3" />
+      <about v-if="tabIndex == 4" />
+    </div>
   </div>
 </template>
 

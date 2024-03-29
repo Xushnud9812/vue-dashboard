@@ -1,0 +1,69 @@
+<template>
+  <div>
+    <div @click="$emit('close')" class="fixed top-0 left-0 w-full h-screen bg-black/70 z-50"></div>
+    <div class="fixed top-1/2 w-1/4 rounded-md left-1/2 -translate-x-1/2 -translate-y-1/2   bg-white z-50 p-5">
+      <div class="mb-10 flex justify-between items-center">
+        <h1>Yangi o'quvchi yaratish</h1>
+        <button @click="$emit('close')">
+          <Icon icon="mdi:close" width="26" class="text-red-500" height="26" />
+        </button>
+      </div>
+
+
+      <div class="relative w-full">
+        <input class="w-full px-5 py-3 focus:outline-none pr-12 bg-gray-100  rounded" type="text"
+          placeholder="ID raqamni kiriting">
+        <Icon class="absolute top-1/2  right-3 -translate-y-1/2 " icon="mingcute:search-line" width="26" height="26" />
+      </div>
+
+      <div class="my-5">
+        <div class="flex justify-between border-b py-3 ">
+          <h1 class="font-semibold">F.I.O</h1>
+          <p class="text-gray-500">Umidbek Jumaniyozov</p>
+        </div>
+        <div class="flex justify-between border-b py-3 ">
+          <h1 class="font-semibold">Telefon raqami</h1>
+          <p class="text-gray-500">+998911347773</p>
+        </div>
+        <div class="flex justify-between border-b py-3 ">
+          <h1 class="font-semibold">ID raqami</h1>
+          <p class="text-gray-500">1000001AA</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <select class="w-full px-5 py-3 focus:outline-none pr-12 bg-gray-100  rounded" name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+          </select>
+        </div>
+        <div>
+          <select class="w-full px-5 py-3 focus:outline-none pr-12 bg-gray-100  rounded" name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+          </select>
+        </div>
+        <div class="col-span-2">
+          <select class="w-full px-5 py-3 focus:outline-none pr-12 bg-gray-100  rounded" name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="">
+        <button @click="$emit('create')" class="w-full bg-[#166199] rounded py-2.5 px-5 mt-10 text-white ">
+          Guruhga qo‘shish
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style lang="scss" scoped></style>

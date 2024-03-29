@@ -69,31 +69,6 @@ const router = createRouter({
           path: '/groups/:id',
           name: 'main-group',
           component: () => import('@/pages/manager/group/main-group.vue'),
-          redirect: { name: 'pupils' },
-          children: [
-            {
-              path: 'pupils',
-              name: 'pupils',
-              component: () => import('@/pages/manager/group/pupils.vue'),
-
-            },
-            {
-              path: 'payments',
-              name: 'payments',
-              component: () => import('@/pages/manager/group/payments.vue')
-            },
-            {
-              path: 'jurnal',
-              name: 'jurnal',
-              component: () => import('@/pages/manager/group/jurnal.vue')
-            },
-            {
-              path: 'about-group',
-              name: 'about-group',
-              component: () => import('@/pages/manager/group/about.vue')
-            },
-          ]
-
         },
 
 
