@@ -2,19 +2,24 @@
 import { ref } from "vue";
 import LeadCard from "@/components/LeadCard.vue";
 import { useKanbanStore } from "@/store/lead";
+import createLead from '@/components/createLead.vue';
 
 const kanbanStore = useKanbanStore();
 
 const isCreateModal = ref(false);
 const columnTitle = ref("");
+const isAddModal = ref(false)
 
 const createTask = (title) => {
   columnTitle.value = title;
   isCreateModal.value = true;
+  isAddModal.value = true
 };
 </script>
 
 <template>
+  <createLead v-if="isAddModal" @close="isAddModal = false" />
+
   <div class="flex gap-x-5">
     <div class="w-1/4 rounded overflow-hidden" v-for="column in kanbanStore.columns">
       <div class="bg-white  p-5 flex items-center justify-between">
