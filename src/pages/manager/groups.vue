@@ -44,6 +44,9 @@ watch(search, () => {
 const goToPage = (page) => {
   currentPage.value = page;
 }
+const openGroup = (id) => {
+  router.push({ name: 'main-group', params: { id: id } })
+}
 
 
 </script>
@@ -90,7 +93,9 @@ const goToPage = (page) => {
               </tr>
             </thead>
             <tbody class="text-gray-900 text-center font-medium" v-if="users.length > 0">
-              <tr v-for="item, index in users" :key="index" class=" border-b  hover:bg-gray-50 ">
+
+              <tr v-for="item, index in users" :key="index" @click="openGroup(item.id)"
+                class=" border-b  hover:bg-gray-50 ">
                 <td class="px-6 py-4">
                   <router-link class="text-[#29A0E3]" :to="{ name: 'main-group', params: { id: item.id } }">
                     {{ item.code }}
