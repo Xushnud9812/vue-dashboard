@@ -22,7 +22,8 @@ const formData = ref({
   day: null,
   room_id: null,
   time: null,
-  start_date: null
+  start_date: null,
+  duration: null
 })
 const createGroup = async () => {
   try {
@@ -67,8 +68,12 @@ fetchData()
             <option v-for="item, index in getData.room" :key="index" :value="item.id">{{ item.name }}</option>
           </select>
         </div>
-
-        <div class="mt-10">
+        <div class="mt-5">
+          <p class="text-gray-400">Kurs davomiyligi(oy)</p>
+          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text"
+            v-model="formData.duration">
+        </div>
+        <div class="mt-5">
           <p class="text-gray-400">Kurs boshlanish sanasi</p>
           <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="date"
             v-model="formData.start_date">

@@ -8,32 +8,21 @@ const getData = ref([])
 const close = () => {
   router.go(-1)
 }
-const fetchData = async () => {
-  try {
-    const response = await api.get(`group/get-data`);
-    getData.value = response.data
-    console.log('rr', getData.value)
-  } catch (e) {
-    console.log('e', e)
-  }
-}
+
 const formData = ref({
-  direction_id: null,
-  day: null,
-  room_id: null,
-  time: null,
-  start_date: null
+  full_name: null,
+  brightday: null,
+  phone: null,
+  gender: null
 })
 const createGroup = async () => {
   try {
-    await api.post('/group/create', formData._value)
-    // window.location.reload();
+    await api.post('/student/create', formData._value)
     router.push('/students')
   } catch (e) {
 
   }
 }
-fetchData()
 
 
 </script>
@@ -51,16 +40,14 @@ fetchData()
       <form @submit="createGroup" action="">
 
         <div class="flex flex-col gap-5">
-          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="FIO">
-          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="FIO">
-          <select required class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded"
-            v-model="formData.room_id">
-            <option v-for="item, index in getData.room" :key="index" :value="item.id">{{ item.name }}</option>
+          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="F.I.O" v-model="formData.full_name">
+          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="Telefon raqami" v-model="formData.phone">
+          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="date" v-model="formData.brightday">
+          <select required class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" v-model="formData.gender">
+            <option value="1">Erkak</option>
+            <option value="1">Ayol</option>
           </select>
         </div>
-
-
-
         <button class="w-full bg-[#166199] rounded py-2.5 px-5 mt-10 text-white ">
           Yaratish
         </button>
