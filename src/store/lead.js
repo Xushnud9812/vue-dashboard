@@ -41,16 +41,14 @@ export const useKanbanStore = defineStore("kanban", {
       {
         title: "Saralangan",
         color: '#008E76',
-
         tasks: [
           {
             id: "1",
             name: "Xushnudbek Ayitboyev",
-            phone: '+99890 036 60 09',
+            phone: '+998900366009',
             date: "2023-08-01 16:32",
             type: "Telegram",
           },
-
         ],
       },
       {

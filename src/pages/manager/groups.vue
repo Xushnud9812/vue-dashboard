@@ -111,7 +111,7 @@ const openGroup = (id) => {
                   {{ item.time }}
                 </td>
                 <td class="px-6 py-4">
-                  -
+                {{ item.student_count }}
                 </td>
                 <td class="px-6 py-4">
                   {{ dateFormat(item.start_date) }}

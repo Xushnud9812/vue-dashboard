@@ -6,29 +6,41 @@ import pupils from '@/components/group/pupils.vue';
 import jurnal from '@/components/group/jurnal.vue';
 import payments from '@/components/group/payments.vue';
 import about from '@/components/group/about.vue';
-
+import { api } from '@/api'
 
 const route = useRoute()
 
 const isAddModal = ref(false)
-
+const getData = ref([])
 const tabIndex = ref(1)
-
+const groupId = ref(route.params.id)
+const students = ref([])
+const payment = ref([])
 
 const changeTab = (index) => {
   tabIndex.value = index
 }
+
+const fetchData = async () => {
+  try {
+    const response = await api.get(`group/get/${groupId.value}`);
+    getData.value = response.data
+    students.value = getData.value.groupStudents
+    payment.value = getData.value.payment
+    console.log('payment',payment.value)
+  } catch (e) {
+    console.log('e', e)
+  }
+}
+
+fetchData()
 
 
 </script>
 
 <template>
   <div>
-
     <AddGroupPupil v-if="isAddModal" @close="isAddModal = false" />
-
-
-
     <div class="">
       <div class="pt-5 flex items-center justify-between mb-10">
         <h1 class="text-xl text-[#29A0E3] font-medium">#P-10/2023 guruh</h1>
@@ -38,8 +50,8 @@ const changeTab = (index) => {
             <Icon class="text-3xl" icon="material-symbols:download" />
           </button>
           <div class="relative">
-            <input v-model="search" placeholder="Search..." class="focus:outline-none w-72 pr-12 border px-4 py-2 rounded"
-              type="text">
+            <input v-model="search" placeholder="Search..."
+              class="focus:outline-none w-72 pr-12 border px-4 py-2 rounded" type="text">
             <Icon class="text-[#666] text-2xl absolute top-1/2 right-5 -translate-y-1/2" icon="gg:search" />
           </div>
           <button @click="isAddModal = true"
@@ -77,13 +89,10 @@ const changeTab = (index) => {
 
     </div>
     <div>
-      <pupils v-if="tabIndex == 1" />
-      <jurnal v-if="tabIndex == 2" />
-      <payments v-if="tabIndex == 3" />
-      <about v-if="tabIndex == 4" />
+      <pupils v-if="tabIndex == 1" :students="students" />
+      <jurnal v-if="tabIndex == 2" :students="students"/>
+      <payments v-if="tabIndex == 3" :payment="payment"/>
+      <about v-if="tabIndex == 4" :students="students"/>
     </div>
   </div>
 </template>
-
-
-
