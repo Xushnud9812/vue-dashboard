@@ -2,6 +2,7 @@
 import draggable from "vuedraggable";
 import { Icon } from '@iconify/vue';
 import { useKanbanStore } from "@/store/lead";
+import router from "../router";
 
 const kanban = useKanbanStore();
 
@@ -16,6 +17,9 @@ const deleteTask = (taskId) => {
   kanban.deleteTask(taskId);
 };
 
+const openLead = () => {
+  router.push('/lead-details')
+}
 
 </script>
 <template>
@@ -23,8 +27,8 @@ const deleteTask = (taskId) => {
     <draggable class="dragArea list-group" :list="props.column.tasks" :animation="200" ghost-class="ghost-card"
       :group="{ name: 'kanban' }" item-key="id">
       <template #item="{ element }">
-        <div :style="`border-color: ${props.column.color}`"
-          class="bg-white border-l-8  shadow group rounded px-3 pt-3 pb-5 mb-5  cursor-move">
+        <div @click="openLead" :style="`border-color: ${props.column.color}`"
+          class="bg-white border-l-8  shadow group rounded px-3 pt-3 pb-5 mb-5  cursor-pointer">
           <div class="flex justify-between items-start">
             <h2 class="basis-4/5">
               {{ element.name }}
