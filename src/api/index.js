@@ -12,7 +12,7 @@ api.interceptors.request.use(
     const userStore = useUserStore()
     const token = userStore.tokens.accessToken
     if (token) {
-      config.headers["Authorization"] = 'Bearer ' + token;  
+      config.headers["Authorization"] = 'Bearer ' + token;
     }
     return config;
   },
@@ -29,21 +29,21 @@ api.interceptors.response.use(
   async (err) => {
     const userStore = useUserStore()
 
-      // Access Token was expired
-      if (err.response.status === 401 ) {
+    // Access Token was expired
+    if (err.response.status === 401) {
 
-        try {
-          // const rs = await api.post("/user/refreshtoken", {
-          //   refreshToken: userStore.tokens.refreshToken,
-          // });
+      try {
+        // const rs = await api.post("/user/refreshtoken", {
+        //   refreshToken: userStore.tokens.refreshToken,
+        // });
 
-          // const { accessToken } = rs.data;
+        // const { accessToken } = rs.data;
 
-          //  userStore.setToken(response.data.tokens)
-        } catch (_error) {
-          return Promise.reject(_error);
-        }
+        //  userStore.setToken(response.data.tokens)
+      } catch (_error) {
+        return Promise.reject(_error);
       }
+    }
 
     return Promise.reject(err);
   }

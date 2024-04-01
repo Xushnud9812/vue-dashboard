@@ -19,17 +19,27 @@ const errorMessage = ref('');
 const login = async () => {
   try {
     const response = await api.post('/user/login', formData.value);
-    if (response.status === 200) {
-      userStore.setUser(response.data)
-      userStore.setToken(response.data.tokens)
-      router.push('/')
-    } else {
-      errorMessage.value = 'Invalid credentials. Please try again.';
-    }
+    // getUserMe()
+    // alert('ok')
+    userStore.setToken(response.data.tokens)
+    router.push('/')
+
   } catch (error) {
     errorMessage.value = 'Login yoki parol xato';
   }
 };
+
+const getUserMe = async () => {
+  try {
+    const response = await api.get('/user/me');
+    userStore.setUser(response.data)
+  }
+  catch (e) {
+    console.log(e);
+  }
+}
+
+
 
 </script>
 <template>
@@ -38,7 +48,7 @@ const login = async () => {
 
       <div class="bg-white rounded-lg p-8">
         <h1 class="mb-10 font-bold text-2xl text-[#28293D]">Kirish</h1>
-       
+
         <form @submit.prevent="login" class="flex flex-col gap-6">
           <div>
             <h2 class="text-xs font-medium uppercase mb-2">Login </h2>

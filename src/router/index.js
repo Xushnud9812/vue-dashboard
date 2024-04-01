@@ -119,7 +119,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (userStore.user) {
+    if (userStore.tokens.accessToken) {
       next();
       return;
     }

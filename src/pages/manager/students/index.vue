@@ -45,9 +45,7 @@ watch(search, () => {
   fetchData()
 })
 
-const createPupil = () => {
-  router.push('/create-pupil')
-}
+
 
 const goToPage = (page) => {
   currentPage.value = page;

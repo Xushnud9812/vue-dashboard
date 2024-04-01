@@ -13,6 +13,8 @@ const props = defineProps({
   },
 });
 
+
+
 const deleteTask = (taskId) => {
   kanban.deleteTask(taskId);
 };
@@ -21,11 +23,19 @@ const openLead = () => {
   router.push('/lead-details')
 }
 
+const log = (e) => {
+  console.log('ads', e);
+}
+const finish = (e, lists) => {
+  console.log('ads', e, lists);
+}
+
 </script>
 <template>
   <div>
-    <draggable class="dragArea list-group" :list="props.column.tasks" :animation="200" ghost-class="ghost-card"
-      :group="{ name: 'kanban' }" item-key="id">
+    <!-- <pre>{{ props.column }}</pre> -->
+    <draggable class="dragArea list-group" @end="finish($event, props.column.tasks)" @change="log"
+      :list="props.column.tasks" :animation="200" ghost-class="ghost-card" :group="{ name: 'kanban' }" item-key="id">
       <template #item="{ element }">
         <div @click="openLead" :style="`border-color: ${props.column.color}`"
           class="bg-white border-l-8  shadow group rounded px-3 pt-3 pb-5 mb-5  cursor-pointer">

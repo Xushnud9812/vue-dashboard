@@ -11,10 +11,13 @@ const fetchData = async () => {
     console.log('e', e)
   }
 }
+
+const emit = defineEmits(['create'])
+
 const createGroup = async () => {
   try {
     await api.post('/lead/create', formData._value)
-    location.reload();
+    emit('create')
   } catch (e) {
     console.log(e)
   }
@@ -40,8 +43,8 @@ fetchData()
       <div class="grid  gap-3">
         <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="F.I.O"
           v-model="formData.full_name">
-        <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text"
-          v-model="formData.phone" placeholder="Telefon raqami">
+        <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" v-model="formData.phone"
+          placeholder="Telefon raqami">
         <div>
           <select class="w-full px-5 py-2 focus:outline-none pr-12 bg-gray-100  rounded" v-model="formData.target">
             <option v-for="item, index in getData.target" :key="index" :value="item.id">{{ item.name }}</option>

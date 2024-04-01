@@ -45,8 +45,8 @@ const changeSidebar = () => {
                     <Icon class="text-primary text-2xl" icon="ep:user" />
                   </div>
 
-                  {{ userStore.user.firstName }}
-                  {{ userStore.user.lastName }}
+                  <!-- {{ userStore.user.firstName }}
+                  {{ userStore.user.lastName }} -->
                   <Icon class="duration-200 group-hover/button:rotate-180" icon="iconamoon:arrow-down-2" />
                 </button>
 

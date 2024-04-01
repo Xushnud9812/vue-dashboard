@@ -1,5 +1,63 @@
+<script setup>
+import { Icon } from '@iconify/vue';
+import { ref } from "vue";
+import { api } from '@/api'
+
+
+const changeModal = ref(false)
+const lead = ref()
+
+const getLead = async () => {
+  try {
+    const response = await api.get(`/leads/8`);
+    lead.value = response.data
+
+  } catch (error) {
+    console.error('Error occurred:', error);
+  }
+};
+getLead()
+
+
+const changeLead = () => {
+  changeModal.value = true
+}
+</script>
+
+
 <template>
   <div>
+
+    <div>
+      <div v-if="changeModal" @click="changeModal = false" class="fixed top-0 left-0 w-full h-screen bg-black/70 z-50">
+      </div>
+      <div v-if="changeModal"
+        class="fixed top-1/2 w-1/4 rounded-md left-1/2 -translate-x-1/2 -translate-y-1/2   bg-white z-50 p-5">
+        <div class="mb-10 flex justify-between items-center">
+          <span class="text-lg">Holatni o’zgartirish</span>
+          <button @click="changeModal = false">
+            <Icon icon="mdi:close" width="26" class="text-red-500" height="26" />
+          </button>
+        </div>
+        <div class="grid  gap-3">
+
+          <div>
+            <select class="w-full px-5 py-2 focus:outline-none pr-12 bg-gray-100  rounded">
+              <option value="2">Qayerdan keldi</option>
+              <option value="2">1</option>
+              <option value="2">1</option>
+            </select>
+          </div>
+        </div>
+        <div class="">
+          <button class="w-full bg-[#166199] rounded py-2.5 px-5 mt-10 text-white ">
+            Saqlash
+          </button>
+        </div>
+      </div>
+    </div>
+
+
     <div class="grid grid-cols-3 gap-5">
       <div class="col-span-1">
         <div class="bg-white p-5 rounded-md">
@@ -119,7 +177,9 @@
               <textarea class="w-full min-h-20  focus:outline-none" name="" id=""></textarea>
 
               <div class="flex justify-end mt-5">
-                <button class="mr-5 py-2 rounded text-white px-3 bg-primary">Topshiriq yaratish</button>
+                <button @click="changeLead" class="mr-3 py-2 rounded text-white px-3 bg-[#29A0E3]">Holatni
+                  o'zgartirish</button>
+                <button class="mr-3 py-2 rounded text-white px-3 bg-primary">Topshiriq yaratish</button>
                 <button class="py-2 rounded text-white px-3 bg-[#008E76]">Saqlash</button>
               </div>
             </div>
@@ -133,10 +193,6 @@
   </div>
 </template>
 
-<script setup>
-import { Icon } from '@iconify/vue';
 
-
-</script>
 
 <style lang="scss" scoped></style>
