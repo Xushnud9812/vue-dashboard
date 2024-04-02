@@ -4,6 +4,7 @@ import "@/assets/style.css";
 import App from "./App.vue";
 import router from "./router";
 import { Icon } from "@iconify/vue";
+import { vMaska } from "maska"
 
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
@@ -16,6 +17,7 @@ pinia.use(piniaPluginPersistedstate);
 const app = createApp(App);
 app.component("downloadExcel", JsonExcel);
 app.component("Icon", Icon);
+app.directive("maska", vMaska);
 app.use(router);
 app.use(pinia);
 app.use(CanvasJSChart);

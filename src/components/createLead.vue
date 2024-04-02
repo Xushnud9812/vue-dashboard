@@ -27,6 +27,9 @@ const formData = ref({
   target: null,
   phone: null
 })
+const focusTelInput = () => {
+  formData.value.phone = '+998'
+}
 
 fetchData()
 </script>
@@ -43,7 +46,8 @@ fetchData()
       <div class="grid  gap-3">
         <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="F.I.O"
           v-model="formData.full_name">
-        <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" v-model="formData.phone"
+        <input @focus="focusTelInput" v-maska data-maska="+998 ## ###-##-##"
+          class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" v-model="formData.phone"
           placeholder="Telefon raqami">
         <div>
           <select class="w-full px-5 py-2 focus:outline-none pr-12 bg-gray-100  rounded" v-model="formData.target">

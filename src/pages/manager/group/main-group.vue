@@ -40,7 +40,7 @@ fetchData()
 
 <template>
   <div>
-    <AddGroupPupil v-if="isAddModal" @close="isAddModal = false" />
+    <AddGroupPupil v-if="isAddModal" @close="isAddModal = false" :group_id="groupId.value"/>
     <div class="">
       <div class="pt-5 flex items-center justify-between mb-10">
         <h1 class="text-xl text-[#29A0E3] font-medium">#P-10/2023 guruh</h1>

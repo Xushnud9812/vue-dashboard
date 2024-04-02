@@ -20,7 +20,7 @@ const deleteTask = (taskId) => {
 };
 
 const openLead = () => {
-  router.push('/lead-details')
+  router.push('/lead-details/1')
 }
 
 const log = (e) => {

@@ -24,6 +24,9 @@ const createGroup = async () => {
   }
 }
 
+const focusTelInput = () => {
+  formData.value.phone = '+998'
+}
 
 </script>
 <template>
@@ -40,10 +43,14 @@ const createGroup = async () => {
       <form @submit="createGroup" action="">
 
         <div class="flex flex-col gap-5">
-          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="F.I.O" v-model="formData.full_name">
-          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="Telefon raqami" v-model="formData.phone">
-          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="date" v-model="formData.brightday">
-          <select required class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" v-model="formData.gender">
+          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" placeholder="F.I.O"
+            v-model="formData.full_name">
+          <input @focus="focusTelInput" class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text"
+            v-maska data-maska="+998 ## ###-##-##" placeholder="Telefon raqami" v-model="formData.phone">
+          <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="date"
+            v-model="formData.brightday">
+          <select required class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded"
+            v-model="formData.gender">
             <option value="1">Erkak</option>
             <option value="1">Ayol</option>
           </select>
