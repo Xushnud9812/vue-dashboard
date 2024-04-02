@@ -103,7 +103,7 @@ const leadCreate = () => {
         </button>
       </div>
       <div class="p-5 bg-slate-300">
-        <LeadCard :column="column" />
+        <LeadCard :column="column"/>
       </div>
     </div>
   </div>

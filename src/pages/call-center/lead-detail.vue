@@ -5,8 +5,9 @@ import { api } from '@/api'
 
 
 const changeModal = ref(false)
+const changeEditModal = ref(false)
 const lead = ref()
-
+const newLead = ref()
 
 import { useRoute } from 'vue-router'
 import dateformat from "dateformat";
@@ -19,13 +20,18 @@ const fetchData = async () => {
   try {
     const response = await api.get(`lead/by-id/${route.params.id}`);
     lead.value = response.data.lead
-    console.log('da', lead.value)
+    newLead.value = response.data.newLead
   } catch (error) {
     console.error('Error occurred:', error);
   }
 };
 fetchData()
-
+const editLeadData = () => {
+  console.log('e')
+}
+const myLeadData = ref({
+  name: lead.name,
+})
 const leads = [
   {
     id: 0,
@@ -50,20 +56,64 @@ const changeLead = () => {
 }
 const editLead = async () => {
   try {
-    const response = await api.put(`lead/edit-action/${editLeadId.value}`, {
+    await api.put(`lead/edit-action/${newLead.value}`, {
       action: editLeadId.value
     });
+    changeModal.value = false
   } catch (error) {
     console.error('Error occurred:', error);
   }
 }
-
-
 </script>
-
-
 <template>
   <div>
+
+    <div>
+      <div v-if="changeEditModal" @click="changeEditModal = false"
+        class="fixed top-0 left-0 w-full h-screen bg-black/70 z-50">
+      </div>
+      <div v-if="changeEditModal"
+        class="fixed top-1/2 w-1/4 rounded-md left-1/2 -translate-x-1/2 -translate-y-1/2   bg-white z-50 p-5">
+        <div class="mb-10 flex justify-between items-center">
+          <span class="text-lg">Ma'lumotlarni kiritish</span>
+          <button @click="changeEditModal = false">
+            <Icon icon="mdi:close" width="26" class="text-red-500" height="26" />
+          </button>
+        </div>
+        <div class="grid  gap-3">
+          <div>
+            <p class="text-gray-400">F.I.O</p>
+            <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text" v-model="myLeadData.name">
+          </div>
+          <div>
+            <p class="text-gray-400">Telefon raqami</p>
+            <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text">
+          </div>
+          <div>
+            <p class="text-gray-400">Lavozimi</p>
+            <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text">
+          </div>
+          <div>
+            <p class="text-gray-400">Korxona</p>
+            <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text">
+          </div>
+          <div>
+            <p class="text-gray-400">Qo'shimcha telefon raqami</p>
+            <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text">
+          </div>
+
+          <div>
+            <p class="text-gray-400">Mijoz haqida</p>
+            <input class="w-full focus:outline-none pr-12 bg-gray-100 px-4 py-2 rounded" type="text">
+          </div>
+        </div>
+        <div class="">
+          <button @click="editLeadData" class="w-full bg-[#166199] rounded py-2.5 px-5 mt-10 text-white ">
+            Saqlash
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div>
       <div v-if="changeModal" @click="changeModal = false" class="fixed top-0 left-0 w-full h-screen bg-black/70 z-50">
@@ -71,13 +121,12 @@ const editLead = async () => {
       <div v-if="changeModal"
         class="fixed top-1/2 w-1/4 rounded-md left-1/2 -translate-x-1/2 -translate-y-1/2   bg-white z-50 p-5">
         <div class="mb-10 flex justify-between items-center">
-          <span class="text-lg">Holatni o’zgartirish</span>
+          <span class="text-lg">Holatni o‘zgartirish</span>
           <button @click="changeModal = false">
             <Icon icon="mdi:close" width="26" class="text-red-500" height="26" />
           </button>
         </div>
         <div class="grid  gap-3">
-
           <div>
             <select v-model="editLeadId" class="w-full px-5 py-2 focus:outline-none pr-12 bg-gray-100  rounded">
               <option :value="item.id" v-for="item in leads" :key="item.id">{{ item.name }}</option>
@@ -91,16 +140,13 @@ const editLead = async () => {
         </div>
       </div>
     </div>
-
-
-
     <div class="grid grid-cols-3 gap-5" v-if="lead != null">
       <div class="col-span-1">
         <div class="bg-white p-5 rounded-md">
           <div class="flex justify-between mb-10">
             <div class="flex gap-5">
               <div class="w-10 h-10 flex justify-center items-center text-2xl bg-primary rounded-full text-white">{{
-                lead.name[0] }}
+        lead.name[0] }}
               </div>
               <div>
                 <h1 class="text-primary font-semibold">{{ lead.name }}</h1>
@@ -123,7 +169,7 @@ const editLead = async () => {
           <div class="mb-5">
             <div class="flex items-center gap-5">
               <h1 class="text-xl font-semibold text-primary">Mijoz haqida:</h1>
-              <button>
+              <button @click="changeEditModal = true">
                 <Icon class="text-2xl" icon="mdi:edit" />
               </button>
             </div>
